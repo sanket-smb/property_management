@@ -14,7 +14,10 @@ with open('property_management/__init__.py', 'rb') as f:
         f.read().decode('utf-8')).group(1)))
 
 requirements = parse_requirements("requirements.txt", session="")
-
+try:
+    up_requirements = [str(ir.req) for ir in requirements]
+except:
+   up_requirements = [str(ir.requirement) for ir in requirements]
 setup(
 	name='property_management',
 	version=version,
@@ -24,6 +27,6 @@ setup(
 	packages=find_packages(),
 	zip_safe=False,
 	include_package_data=True,
-	install_requires=[str(ir.req) for ir in requirements],
+	install_requires=up_requirements,
 	dependency_links=[str(ir._link) for ir in requirements if ir._link]
 )

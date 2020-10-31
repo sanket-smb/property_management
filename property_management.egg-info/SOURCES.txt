@@ -11,7 +11,6 @@ property_management.egg-info/PKG-INFO
 property_management.egg-info/SOURCES.txt
 property_management.egg-info/dependency_links.txt
 property_management.egg-info/not-zip-safe
-property_management.egg-info/requires.txt
 property_management.egg-info/top_level.txt
 property_management/config/__init__.py
 property_management/config/desktop.py
@@ -25,11 +24,13 @@ property_management/property_management/doctype/add_new_properties/__init__.py
 property_management/property_management/doctype/add_new_properties/add_new_properties.js
 property_management/property_management/doctype/add_new_properties/add_new_properties.json
 property_management/property_management/doctype/add_new_properties/add_new_properties.py
+property_management/property_management/doctype/add_new_properties/test_add_new_properties.js
 property_management/property_management/doctype/add_new_properties/test_add_new_properties.py
 property_management/property_management/doctype/building/__init__.py
 property_management/property_management/doctype/building/building.js
 property_management/property_management/doctype/building/building.json
 property_management/property_management/doctype/building/building.py
+property_management/property_management/doctype/building/test_building.js
 property_management/property_management/doctype/building/test_building.py
 property_management/property_management/doctype/collect_rent/__init__.py
 property_management/property_management/doctype/collect_rent/collect_rent.js
@@ -55,6 +56,8 @@ property_management/property_management/doctype/process_rent/__init__.py
 property_management/property_management/doctype/process_rent/process_rent.js
 property_management/property_management/doctype/process_rent/process_rent.json
 property_management/property_management/doctype/process_rent/process_rent.py
+property_management/property_management/doctype/process_rent/test_process_rent.js
+property_management/property_management/doctype/process_rent/test_process_rent.py
 property_management/property_management/doctype/process_rent_for_commerital/__init__.py
 property_management/property_management/doctype/process_rent_for_commerital/process_rent_for_commerital.js
 property_management/property_management/doctype/process_rent_for_commerital/process_rent_for_commerital.json
@@ -68,6 +71,9 @@ property_management/property_management/doctype/property/test_property.py
 property_management/property_management/doctype/property_details/__init__.py
 property_management/property_management/doctype/property_details/property_details.json
 property_management/property_management/doctype/property_details/property_details.py
+property_management/property_management/doctype/property_table/__init__.py
+property_management/property_management/doctype/property_table/property_table.json
+property_management/property_management/doctype/property_table/property_table.py
 property_management/property_management/doctype/property_type/__init__.py
 property_management/property_management/doctype/property_type/property_type.js
 property_management/property_management/doctype/property_type/property_type.json
@@ -77,11 +83,13 @@ property_management/property_management/doctype/rent_contract/__init__.py
 property_management/property_management/doctype/rent_contract/rent_contract.js
 property_management/property_management/doctype/rent_contract/rent_contract.json
 property_management/property_management/doctype/rent_contract/rent_contract.py
+property_management/property_management/doctype/rent_contract/test_rent_contract.js
 property_management/property_management/doctype/rent_contract/test_rent_contract.py
 property_management/property_management/doctype/rent_receipt/__init__.py
 property_management/property_management/doctype/rent_receipt/rent_receipt.js
 property_management/property_management/doctype/rent_receipt/rent_receipt.json
 property_management/property_management/doctype/rent_receipt/rent_receipt.py
+property_management/property_management/doctype/rent_receipt/test_rent_receipt.js
 property_management/property_management/doctype/rent_receipt/test_rent_receipt.py
 property_management/property_management/doctype/salutation/__init__.py
 property_management/property_management/doctype/salutation/salutation.js
