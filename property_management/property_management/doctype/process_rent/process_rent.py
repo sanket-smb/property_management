@@ -16,11 +16,11 @@ class ProcessRent(Document):
 
 @frappe.whitelist()	
 def set_dates():
-		import datetime
- 		today = datetime.date.today()
- 		last = today.replace(day=1) - datetime.timedelta(days=1)
- 		first=last.replace(day=1)
- 		return first,last
+	import datetime
+	today = datetime.date.today()
+	last = today.replace(day=1) - datetime.timedelta(days=1)
+	first=last.replace(day=1)
+	return first,last
 
 @frappe.whitelist()	
 def create_rent_receipts(from_period,to_period,building=None,property_id=None,tenant=None):
@@ -65,7 +65,7 @@ def make_gl_entry(tenant,final_rent_amount,name):
 	default_income_account=frappe.db.get_value("Company",default_company,"default_income_account")
 	default_cost_center=frappe.db.get_value("Company",default_company,"cost_center")
 	gldict_debit =frappe.get_doc( {
-		    'doctype': 'GL Entry',
+			'doctype': 'GL Entry',
 			'company': default_company,
 			'account': default_receivable_account,
 			'against': default_income_account,
@@ -85,7 +85,7 @@ def make_gl_entry(tenant,final_rent_amount,name):
 	})
 	gldict_debit.insert()
 	gldict_credit = frappe.get_doc({
-		    'doctype': 'GL Entry',
+			'doctype': 'GL Entry',
 			'company': default_company,
 			'posting_date': nowdate(),
 			'account': default_income_account,
