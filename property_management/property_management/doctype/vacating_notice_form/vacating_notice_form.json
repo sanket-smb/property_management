@@ -1,0 +1,180 @@
+{
+ "autoname": "naming_series:",
+ "creation": "2020-11-18 15:10:20.332783",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "contract",
+  "tenant_name",
+  "complex",
+  "apt_no",
+  "ref_no",
+  "column_break_6",
+  "contract_start_date",
+  "contract_end_date",
+  "inspection_date",
+  "check_out_date",
+  "notice_period",
+  "section_break_10",
+  "inspected_by",
+  "verified_by",
+  "remarks",
+  "approved_by",
+  "confirmed_and_received_by",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "VNF-"
+  },
+  {
+   "fieldname": "contract",
+   "fieldtype": "Link",
+   "label": "Contract",
+   "options": "Rent Contract"
+  },
+  {
+   "fetch_from": "contract.tenant",
+   "fieldname": "tenant_name",
+   "fieldtype": "Link",
+   "label": "Tenant Name",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "contract.complex",
+   "fieldname": "complex",
+   "fieldtype": "Data",
+   "label": "Complex ",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "contract.apt_no",
+   "fieldname": "apt_no",
+   "fieldtype": "Data",
+   "label": "Apt No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "contract.ref_no",
+   "fieldname": "ref_no",
+   "fieldtype": "Data",
+   "label": "Ref No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "contract.contract_start_date",
+   "fieldname": "contract_start_date",
+   "fieldtype": "Date",
+   "label": "Contract Start Date"
+  },
+  {
+   "fetch_from": "contract.contract_end_date",
+   "fieldname": "contract_end_date",
+   "fieldtype": "Date",
+   "label": "Contract End Date"
+  },
+  {
+   "fetch_from": "contract.inspection_date",
+   "fieldname": "inspection_date",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "Inspection Date "
+  },
+  {
+   "fetch_from": "contract.contract_end_date",
+   "fieldname": "check_out_date",
+   "fieldtype": "Date",
+   "label": "Check Out Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Vacating Notice Form",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "inspected_by",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Inspected By"
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Verified By"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Vacating Notice Form",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Data",
+   "label": "Approved by"
+  },
+  {
+   "fieldname": "confirmed_and_received_by",
+   "fieldtype": "Data",
+   "label": "Confirmed and Received by"
+  },
+  {
+   "fetch_from": "contract.notice_period",
+   "fieldname": "notice_period",
+   "fieldtype": "Data",
+   "label": "Notice Period(Days)"
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2020-11-22 09:33:11.764622",
+ "modified_by": "Administrator",
+ "module": "Property Management",
+ "name": "Vacating Notice Form",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

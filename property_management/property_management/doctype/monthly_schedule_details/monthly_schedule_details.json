@@ -1,0 +1,41 @@
+{
+ "creation": "2020-11-15 21:13:42.430475",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "property",
+  "date",
+  "amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "property",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Property"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount"
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-11-15 21:13:42.430475",
+ "modified_by": "Administrator",
+ "module": "Property Management",
+ "name": "Monthly Schedule Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

@@ -1,0 +1,142 @@
+{
+ "creation": "2020-11-12 14:13:45.326345",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "contract",
+  "tenant_name",
+  "complex",
+  "apt_no",
+  "ref_no",
+  "column_break_6",
+  "inspection_date",
+  "check_out_date",
+  "amended_from",
+  "section_break_10",
+  "quality_inspection_template",
+  "readings",
+  "inspected_by",
+  "verified_by",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "contract",
+   "fieldtype": "Link",
+   "label": "Contract",
+   "options": "Rent Contract"
+  },
+  {
+   "fetch_from": "contract.tenant",
+   "fieldname": "tenant_name",
+   "fieldtype": "Link",
+   "label": "Tenant Name",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "contract.complex",
+   "fieldname": "complex",
+   "fieldtype": "Data",
+   "label": "Complex ",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "contract.apt_no",
+   "fieldname": "apt_no",
+   "fieldtype": "Data",
+   "label": "Apt No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "contract.ref_no",
+   "fieldname": "ref_no",
+   "fieldtype": "Data",
+   "label": "Ref No",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "contract.inspection_date",
+   "fieldname": "inspection_date",
+   "fieldtype": "Date",
+   "label": "Inspection Date ",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "contract.contract_end_date",
+   "fieldname": "check_out_date",
+   "fieldtype": "Date",
+   "label": "Check Out Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Property Inspection",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "quality_inspection_template",
+   "fieldtype": "Link",
+   "label": "Quality Inspection Template",
+   "options": "Quality Inspection Template"
+  },
+  {
+   "fieldname": "readings",
+   "fieldtype": "Table",
+   "label": " Readings",
+   "options": "Quality Inspection Reading"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "inspected_by",
+   "fieldtype": "Data",
+   "label": "Inspected By"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Data",
+   "label": "Verified By"
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2020-11-13 18:08:44.926064",
+ "modified_by": "Administrator",
+ "module": "Property Management",
+ "name": "Property Inspection",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

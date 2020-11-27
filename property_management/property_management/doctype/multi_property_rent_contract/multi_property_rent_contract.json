@@ -1,0 +1,201 @@
+{
+ "allow_import": 1,
+ "autoname": "MPRC.#####",
+ "creation": "2020-11-20 15:47:24.003074",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "column_break_5",
+  "property_details",
+  "tenant_details",
+  "tenant",
+  "tenant_name",
+  "civil_id",
+  "column_break_14",
+  "occupation",
+  "mobile_number",
+  "accomodation_type",
+  "contract_details",
+  "date",
+  "contract_start_date",
+  "contract_end_date",
+  "inspection_date",
+  "column_break_13",
+  "deposit_amount",
+  "payment_period",
+  "notice_period",
+  "deposit_amount_in_words",
+  "rent",
+  "rent_amount_in_words",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Section Break",
+   "label": "Property Details"
+  },
+  {
+   "fieldname": "property_details",
+   "fieldtype": "Table",
+   "label": "Rent Contract Multi Property",
+   "options": "Rent Contract Multi Property"
+  },
+  {
+   "fieldname": "tenant_details",
+   "fieldtype": "Section Break",
+   "label": "Tenant Details"
+  },
+  {
+   "fieldname": "tenant",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Tenant ID",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "tenant.customer_name",
+   "fieldname": "tenant_name",
+   "fieldtype": "Data",
+   "label": "Tenant Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "civil_id",
+   "fieldtype": "Data",
+   "label": "Civil ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "occupation",
+   "fieldtype": "Data",
+   "label": "Occupation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "label": "Mobile Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "accomodation_type",
+   "fieldtype": "Data",
+   "label": "Accomodation Type"
+  },
+  {
+   "fieldname": "contract_details",
+   "fieldtype": "Section Break",
+   "label": "Contract Details"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract_start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Contract Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract_end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Contract End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "inspection_date",
+   "fieldtype": "Date",
+   "label": "Inspection Date "
+  },
+  {
+   "default": "0",
+   "fieldname": "deposit_amount",
+   "fieldtype": "Currency",
+   "label": "Deposit Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payment_period",
+   "fieldtype": "Select",
+   "label": "Payment Period",
+   "options": "Monthly",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.deposit_amount",
+   "fieldname": "deposit_amount_in_words",
+   "fieldtype": "Data",
+   "label": "Deposit Amount In Words",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rent",
+   "fieldtype": "Currency",
+   "label": "Total Rent Amount",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "rent_amount_in_words",
+   "fieldtype": "Data",
+   "label": "Actual Rent Amount In words",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Multi Property Rent Contract",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "notice_period",
+   "fieldtype": "Data",
+   "label": "Notice Period (Days)"
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2020-11-27 22:57:56.767669",
+ "modified_by": "Administrator",
+ "module": "Property Management",
+ "name": "Multi Property Rent Contract",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

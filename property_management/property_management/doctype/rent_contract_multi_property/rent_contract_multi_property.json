@@ -1,0 +1,68 @@
+{
+ "creation": "2020-11-20 15:43:57.868520",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "building",
+  "property",
+  "actual_rent",
+  "discount",
+  "payable_rent_amount",
+  "deposit"
+ ],
+ "fields": [
+  {
+   "fieldname": "building",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Building",
+   "options": "Building",
+   "reqd": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Property",
+   "options": "Property",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "property.rent",
+   "fieldname": "actual_rent",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Actual Rent",
+   "reqd": 1
+  },
+  {
+   "fieldname": "discount",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Discount"
+  },
+  {
+   "fieldname": "payable_rent_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Payable Rent Amount"
+  },
+  {
+   "fieldname": "deposit",
+   "fieldtype": "Float",
+   "label": "Deposit",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-11-22 22:02:53.300074",
+ "modified_by": "Administrator",
+ "module": "Property Management",
+ "name": "Rent Contract Multi Property",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
