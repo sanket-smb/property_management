@@ -20,7 +20,8 @@
   "total_area_of_property",
   "area_unit",
   "status",
-  "image"
+  "image",
+  "property_management_amenities"
  ],
  "fields": [
   {
@@ -119,9 +120,15 @@
    "fieldname": "ref_no",
    "fieldtype": "Data",
    "label": "Ref No"
+  },
+  {
+   "fieldname": "property_management_amenities",
+   "fieldtype": "Table",
+   "label": "Property Management Amenities",
+   "options": "Property Management Amenities"
   }
  ],
- "modified": "2020-11-23 16:33:45.338244",
+ "modified": "2020-11-30 11:10:41.100355",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Property",

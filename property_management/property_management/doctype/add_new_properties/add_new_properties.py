@@ -14,7 +14,7 @@ class AddNewProperties(Document):
 
 	def on_submit(self):
 		for child in self.get('property_details'):
-			for n in xrange(child.number_of_properties):
+			for n in range(child.number_of_properties):
 				self.create_property(child.property_type,child.area_of_property,child.area_unit)
 
 	def create_property(self,property_type,area=None,area_unit=None):

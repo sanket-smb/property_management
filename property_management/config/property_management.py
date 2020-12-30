@@ -66,6 +66,18 @@ def get_data():
 					"description": _("Process Rent (Generate Rent Receipts and Print)."),
 				},
 				{
+       					"type": "doctype",
+					"name": "Vacating Notice Form",
+        				"label": _("Vacating Notice Form"),
+        				"description": _("Vacating records"),
+				},
+				{
+        			"type": "doctype",
+        			"name": "Property Inspection",
+				"label": _("Property Inspection"),
+        			"description": _("Property Inspection Records."),
+				},
+				{
 					"type": "doctype",
 					"name": "Process Rent for Commerital",
 					"label": _("Process Rent for Commerital Properties"),

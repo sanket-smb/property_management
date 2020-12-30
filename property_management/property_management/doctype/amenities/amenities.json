@@ -1,0 +1,40 @@
+{
+ "autoname": "field:amenities",
+ "creation": "2020-11-30 11:09:45.333480",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "amenities"
+ ],
+ "fields": [
+  {
+   "fieldname": "amenities",
+   "fieldtype": "Data",
+   "label": "Amenities",
+   "unique": 1
+  }
+ ],
+ "modified": "2020-11-30 11:09:47.587996",
+ "modified_by": "Administrator",
+ "module": "Property Management",
+ "name": "Amenities",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

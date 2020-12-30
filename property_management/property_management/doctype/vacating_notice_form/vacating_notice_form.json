@@ -2,6 +2,7 @@
  "autoname": "naming_series:",
  "creation": "2020-11-18 15:10:20.332783",
  "doctype": "DocType",
+ "document_type": "Document",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
@@ -154,7 +155,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2020-11-22 09:33:11.764622",
+ "modified": "2020-11-30 10:57:52.288433",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Vacating Notice Form",
