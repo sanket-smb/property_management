@@ -15,12 +15,14 @@
   "column_break_3",
   "image",
   "property_management_amenities",
+  "amenities",
   "properties_details_sb",
   "property_details",
   "amended_from"
  ],
  "fields": [
   {
+   "allow_on_submit": 1,
    "fieldname": "building_id",
    "fieldtype": "Data",
    "label": "Building ID",
@@ -87,10 +89,16 @@
    "fieldtype": "Table",
    "label": "Property Management Amenities",
    "options": "Property Management Amenities"
+  },
+  {
+   "fieldname": "amenities",
+   "fieldtype": "Small Text",
+   "label": "Amenities",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
- "modified": "2020-11-30 11:11:23.932212",
+ "modified": "2021-03-15 08:57:05.688082",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Building",

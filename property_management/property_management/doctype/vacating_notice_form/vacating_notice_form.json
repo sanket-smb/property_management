@@ -93,10 +93,10 @@
   },
   {
    "fetch_from": "contract.contract_end_date",
+   "fetch_if_empty": 1,
    "fieldname": "check_out_date",
    "fieldtype": "Date",
-   "label": "Check Out Date",
-   "read_only": 1
+   "label": "Check Out Date"
   },
   {
    "fieldname": "amended_from",
@@ -155,7 +155,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2020-11-30 10:57:52.288433",
+ "modified": "2021-03-05 09:18:26.867792",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Vacating Notice Form",

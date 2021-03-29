@@ -1,11 +1,13 @@
 {
  "allow_import": 1,
+ "autoname": "format:AAA{YY}-{####}",
  "creation": "2017-02-01 00:59:03.929514",
  "doctype": "DocType",
  "document_type": "Document",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "naming_series",
   "building",
   "property_details",
   "property",
@@ -21,6 +23,7 @@
   "tenant_details",
   "tenant",
   "tenant_name",
+  "name_arabic",
   "civil_id",
   "column_break_14",
   "occupation",
@@ -31,10 +34,12 @@
   "date",
   "contract_start_date",
   "contract_end_date",
+  "payment_date_calculation",
   "inspection_date",
   "deposit_amount",
   "payment_period",
   "notice_period",
+  "letter_notification",
   "column_break_13",
   "deposit_amount_in_words",
   "rent",
@@ -45,7 +50,8 @@
   "monthly_payable_amount",
   "amended_from",
   "more_information_section",
-  "multi_rent_contract_no"
+  "multi_rent_contract_no",
+  "invoice_created"
  ],
  "fields": [
   {
@@ -144,8 +150,9 @@
   },
   {
    "fieldname": "accomodation_type",
-   "fieldtype": "Data",
-   "label": "Accomodation Type"
+   "fieldtype": "Select",
+   "label": "Accomodation Type",
+   "options": "\none small family or 1 occupant only\none small family or 2 occupants only\none small family or 3 occupants only\none small family or 4 occupants only"
   },
   {
    "fieldname": "contract_details",
@@ -153,6 +160,7 @@
    "label": "Contract Details"
   },
   {
+   "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
    "label": "Date",
@@ -235,7 +243,6 @@
    "label": "Complex "
   },
   {
-   "fetch_from": "property.apt_no",
    "fieldname": "apt_no",
    "fieldtype": "Data",
    "label": " Apt No"
@@ -260,7 +267,7 @@
    "fieldname": "payment_period",
    "fieldtype": "Select",
    "label": "Payment Period",
-   "options": "Monthly",
+   "options": "Monthly\nEach month",
    "reqd": 1
   },
   {
@@ -275,7 +282,6 @@
    "options": "Company\nIndividual"
   },
   {
-   "depends_on": "multi_rent_contract_no",
    "fieldname": "more_information_section",
    "fieldtype": "Section Break",
    "label": "More Information"
@@ -284,13 +290,45 @@
    "fieldname": "multi_rent_contract_no",
    "fieldtype": "Read Only",
    "label": "Multi Rent Contract No"
+  },
+  {
+   "fieldname": "letter_notification",
+   "fieldtype": "Int",
+   "label": "Letter Notification(In Days)"
+  },
+  {
+   "fetch_from": "tenant.name_arabic",
+   "fieldname": "name_arabic",
+   "fieldtype": "Data",
+   "label": "Name Arabic"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "invoice_created",
+   "fieldtype": "Check",
+   "label": "Invoice Created"
+  },
+  {
+   "fieldname": "payment_date_calculation",
+   "fieldtype": "Select",
+   "label": "Payment Date Calculation",
+   "options": "\nContract Start Date\nMonth Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "ID",
+   "options": "AAA-.YYYY.-####"
   }
  ],
  "is_submittable": 1,
- "modified": "2020-11-27 22:23:53.250457",
+ "modified": "2021-03-26 18:20:48.960336",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Rent Contract",
+ "name_case": "Title Case",
  "owner": "email.kadam@gmail.com",
  "permissions": [
   {

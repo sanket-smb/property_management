@@ -7,7 +7,9 @@
  "field_order": [
   "building",
   "property_number",
+  "building_number",
   "property_type",
+  "furnished_type",
   "block_number",
   "street_name_number",
   "area",
@@ -19,9 +21,12 @@
   "property_owner",
   "total_area_of_property",
   "area_unit",
+  "revenue_account",
   "status",
   "image",
-  "property_management_amenities"
+  "property_management_amenities",
+  "inventory_details_section",
+  "inventory"
  ],
  "fields": [
   {
@@ -107,6 +112,7 @@
    "options": "Property Owner"
   },
   {
+   "fetch_from": "building.building_name",
    "fieldname": "complex",
    "fieldtype": "Data",
    "label": "Complex "
@@ -126,9 +132,38 @@
    "fieldtype": "Table",
    "label": "Property Management Amenities",
    "options": "Property Management Amenities"
+  },
+  {
+   "fieldname": "furnished_type",
+   "fieldtype": "Select",
+   "label": "Furnished Type",
+   "options": "fully\nsemi"
+  },
+  {
+   "fieldname": "inventory",
+   "fieldtype": "Table",
+   "label": "Inventory",
+   "options": "Property Inventory"
+  },
+  {
+   "fieldname": "inventory_details_section",
+   "fieldtype": "Section Break",
+   "label": "Inventory Details"
+  },
+  {
+   "fieldname": "revenue_account",
+   "fieldtype": "Link",
+   "label": "Revenue Account",
+   "options": "Account"
+  },
+  {
+   "fetch_from": "building.building_id",
+   "fieldname": "building_number",
+   "fieldtype": "Data",
+   "label": "Building Number"
   }
  ],
- "modified": "2020-11-30 11:10:41.100355",
+ "modified": "2021-03-24 19:49:37.788844",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Property",

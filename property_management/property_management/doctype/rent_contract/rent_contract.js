@@ -21,6 +21,31 @@ frappe.ui.form.on('Rent Contract', {
 			frm.add_custom_button(__('Cancel Contract'),cur_frm.cscript.cancel_contract, __("Make"));
 			frm.page.set_inner_btn_group_as_primary(__("Make"));
 		}
+		if(frm.doc.docstatus == 1) {
+			frm.add_custom_button(__("Make Deposite Invoice"), function() {
+				frm.call({
+					method:"process_deposite_invoice",
+					doc: frm.doc,
+					freeze: true,
+					freeze_message: __("Creating Invoice"),
+					callback:function(r){
+						frm.reload_doc();
+					}
+				})
+			})
+		}
+		if(frm.doc.docstatus == 1 && !frm.doc.invoice_created)
+		frm.add_custom_button(__("Create Invoice"), function() {
+			frm.call({
+				method:"process_invoice",
+				doc: frm.doc,
+				freeze: true,
+				freeze_message: __("Creating Invoice"),
+				callback:function(r){
+					frm.reload_doc();
+				}
+			})
+		})
 
 	},
 	property: function(frm) {
@@ -48,7 +73,7 @@ frappe.ui.form.on('Rent Contract', {
 		}
 	},
 	contract_start_date: function(frm) {
-		frm.set_value("contract_end_date", frappe.datetime.add_days(frappe.datetime.add_months(frm.doc.contract_start_date, 60), -1))
+		frm.set_value("contract_end_date", frappe.datetime.add_days(frappe.datetime.add_months(frm.doc.contract_start_date, 12), -1))
 	}
 });
 

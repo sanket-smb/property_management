@@ -9,7 +9,8 @@
   "actual_rent",
   "discount",
   "payable_rent_amount",
-  "deposit"
+  "deposit",
+  "monthly_payable_amount"
  ],
  "fields": [
   {
@@ -30,6 +31,7 @@
   },
   {
    "fetch_from": "property.rent",
+   "fetch_if_empty": 1,
    "fieldname": "actual_rent",
    "fieldtype": "Currency",
    "in_list_view": 1,
@@ -53,10 +55,15 @@
    "fieldtype": "Float",
    "label": "Deposit",
    "read_only": 1
+  },
+  {
+   "fieldname": "monthly_payable_amount",
+   "fieldtype": "Currency",
+   "label": "Monthly Payable Amount"
   }
  ],
  "istable": 1,
- "modified": "2020-11-22 22:02:53.300074",
+ "modified": "2021-03-28 15:26:46.125105",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Rent Contract Multi Property",

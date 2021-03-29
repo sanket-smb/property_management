@@ -7,7 +7,11 @@ import frappe
 from frappe.model.document import Document
 
 class Building(Document):
-	
+	def validate(self):
+		amenities = ""
+		for row in self.property_management_amenities:
+			amenities += row.amenities + ","
+		self.amenities = amenities[:-1] if not amenities == "" else amenities
 	def on_submit(self):
 		for child in self.get('property_details'):
 			for n in range(child.number_of_properties):

@@ -12,6 +12,7 @@
   "column_break_6",
   "inspection_date",
   "check_out_date",
+  "vacating_notice_form",
   "amended_from",
   "section_break_10",
   "quality_inspection_template",
@@ -113,10 +114,17 @@
    "fieldname": "verified_by",
    "fieldtype": "Data",
    "label": "Verified By"
+  },
+  {
+   "fieldname": "vacating_notice_form",
+   "fieldtype": "Link",
+   "label": "Vacating Notice Form",
+   "options": "Vacating Notice Form",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
- "modified": "2020-11-13 18:08:44.926064",
+ "modified": "2021-03-05 09:27:40.169587",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Property Inspection",

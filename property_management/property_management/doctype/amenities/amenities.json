@@ -1,4 +1,6 @@
 {
+ "allow_import": 1,
+ "allow_rename": 1,
  "autoname": "field:amenities",
  "creation": "2020-11-30 11:09:45.333480",
  "doctype": "DocType",
@@ -15,7 +17,7 @@
    "unique": 1
   }
  ],
- "modified": "2020-11-30 11:09:47.587996",
+ "modified": "2021-03-10 16:46:42.754144",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Amenities",
