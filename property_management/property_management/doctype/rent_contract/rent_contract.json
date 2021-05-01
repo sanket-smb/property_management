@@ -8,6 +8,8 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "contract_configuration",
+  "invoice_type_format",
   "building",
   "property_details",
   "property",
@@ -31,6 +33,10 @@
   "accomodation_type",
   "contract_details",
   "contract_type",
+  "contact_person",
+  "contact_person_arabic",
+  "company_tenant_name",
+  "company_tenant_name_arabic",
   "date",
   "contract_start_date",
   "contract_end_date",
@@ -44,6 +50,7 @@
   "deposit_amount_in_words",
   "rent",
   "rent_amount_in_words",
+  "rent_amount_in_words_ar",
   "discount",
   "final_rent_amount",
   "final_rent_amount_in_words",
@@ -51,7 +58,11 @@
   "amended_from",
   "more_information_section",
   "multi_rent_contract_no",
-  "invoice_created"
+  "invoice_created",
+  "diplomatic_clause_en",
+  "diplomatic_clause_ar",
+  "additional_clause_en",
+  "additional_clause_ar"
  ],
  "fields": [
   {
@@ -265,9 +276,9 @@
   },
   {
    "fieldname": "payment_period",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Payment Period",
-   "options": "Monthly\nEach month",
+   "options": "Payment Period Master",
    "reqd": 1
   },
   {
@@ -319,12 +330,85 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "ID",
    "options": "AAA-.YYYY.-####"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "rent_amount_in_words_ar",
+   "fieldtype": "Data",
+   "label": "Actual Rent Amount In words(Arabic)"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.contract_type==\"Company\"",
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.contract_type==\"Company\"",
+   "fieldname": "company_tenant_name",
+   "fieldtype": "Data",
+   "label": "Company Tenant Name"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "diplomatic_clause_en",
+   "fieldtype": "Small Text",
+   "label": "Diplomatic Clause En"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "diplomatic_clause_ar",
+   "fieldtype": "Small Text",
+   "label": "Diplomatic Clause Ar"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "contract_configuration",
+   "fieldtype": "Link",
+   "label": "Contract Configuration ",
+   "options": "Contract Configuration"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.contract_type==\"Company\"",
+   "fieldname": "contact_person_arabic",
+   "fieldtype": "Data",
+   "label": "Contact Person Arabic"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.contract_type==\"Company\"",
+   "fieldname": "company_tenant_name_arabic",
+   "fieldtype": "Data",
+   "label": "Company Tenant Name Arabic"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "additional_clause_en",
+   "fieldtype": "Small Text",
+   "label": "Additional Clause En"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "additional_clause_ar",
+   "fieldtype": "Small Text",
+   "label": "Additional Clause Ar"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "invoice_type_format",
+   "fieldtype": "Select",
+   "label": "Invoice Type format",
+   "options": "Physical\nCompany\nEmail\nNot Required"
   }
  ],
  "is_submittable": 1,
- "modified": "2021-03-26 18:20:48.960336",
+ "modified": "2021-05-01 16:18:22.534428",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Rent Contract",

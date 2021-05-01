@@ -4,6 +4,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "letterhead",
   "contract",
   "tenant_name",
   "complex",
@@ -25,7 +26,7 @@
   {
    "fieldname": "contract",
    "fieldtype": "Link",
-   "label": "Contract",
+   "label": "Belad",
    "options": "Rent Contract"
   },
   {
@@ -58,11 +59,9 @@
    "read_only": 1
   },
   {
-   "fetch_from": "contract.inspection_date",
    "fieldname": "inspection_date",
    "fieldtype": "Date",
-   "label": "Inspection Date ",
-   "read_only": 1
+   "label": "Inspection Date "
   },
   {
    "fetch_from": "contract.contract_end_date",
@@ -121,10 +120,16 @@
    "label": "Vacating Notice Form",
    "options": "Vacating Notice Form",
    "read_only": 1
+  },
+  {
+   "fieldname": "letterhead",
+   "fieldtype": "Select",
+   "label": "Letterhead",
+   "options": "AAA\nBelad"
   }
  ],
  "is_submittable": 1,
- "modified": "2021-03-05 09:27:40.169587",
+ "modified": "2021-04-27 15:02:53.586038",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Property Inspection",

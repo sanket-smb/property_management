@@ -28,6 +28,8 @@ class Building(Document):
 						"area": self.area,
 						"total_area_of_property":area,
 						"area_unit": area_unit,
+						"property_number":self.paci_no
+				
 		
 		})
 		property_obj.flags.ignore_mandatory = True

@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "letterhead",
   "contract",
   "tenant_name",
   "complex",
@@ -152,10 +153,16 @@
    "fieldname": "notice_period",
    "fieldtype": "Data",
    "label": "Notice Period(Days)"
+  },
+  {
+   "fieldname": "letterhead",
+   "fieldtype": "Select",
+   "label": "Letterhead",
+   "options": "AAA\nBelad"
   }
  ],
  "is_submittable": 1,
- "modified": "2021-03-05 09:18:26.867792",
+ "modified": "2021-04-27 15:01:45.549623",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Vacating Notice Form",

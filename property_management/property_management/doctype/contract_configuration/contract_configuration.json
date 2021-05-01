@@ -1,0 +1,152 @@
+{
+ "autoname": "field:lessor_name_en",
+ "creation": "2021-04-08 14:05:13.059607",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "header",
+  "header_image",
+  "footer_logo_image",
+  "section_break_2",
+  "lessor_name_en",
+  "company_name_en",
+  "lessor_address_english",
+  "column_break_6",
+  "lessor_name_ar",
+  "company_name_ar",
+  "lessor_address_arabic",
+  "bank_details_section_section",
+  "bank_name_en",
+  "beneficiary_name_en",
+  "account_no",
+  "swift_code",
+  "iban",
+  "column_break_16",
+  "bank_name_ar",
+  "beneficiary_name_ar"
+ ],
+ "fields": [
+  {
+   "fieldname": "header",
+   "fieldtype": "Image",
+   "label": "Header"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "lessor_name_en",
+   "fieldtype": "Data",
+   "label": "Lessor Name En",
+   "unique": 1
+  },
+  {
+   "fieldname": "company_name_en",
+   "fieldtype": "Data",
+   "label": "Company Name En"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "lessor_name_ar",
+   "fieldtype": "Data",
+   "label": "Lessor Name Ar"
+  },
+  {
+   "fieldname": "company_name_ar",
+   "fieldtype": "Data",
+   "label": "Company Name Ar"
+  },
+  {
+   "fieldname": "bank_details_section_section",
+   "fieldtype": "Section Break",
+   "label": "Bank Details Section"
+  },
+  {
+   "fieldname": "bank_name_en",
+   "fieldtype": "Data",
+   "label": "Bank Name En"
+  },
+  {
+   "fieldname": "beneficiary_name_en",
+   "fieldtype": "Data",
+   "label": "Beneficiary Name En"
+  },
+  {
+   "fieldname": "account_no",
+   "fieldtype": "Data",
+   "label": "Account No."
+  },
+  {
+   "fieldname": "swift_code",
+   "fieldtype": "Data",
+   "label": "Swift Code"
+  },
+  {
+   "fieldname": "iban",
+   "fieldtype": "Data",
+   "label": "IBAN"
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "beneficiary_name_ar",
+   "fieldtype": "Data",
+   "label": "Beneficiary Name Ar"
+  },
+  {
+   "fieldname": "bank_name_ar",
+   "fieldtype": "Data",
+   "label": "Bank Name Ar"
+  },
+  {
+   "fieldname": "header_image",
+   "fieldtype": "Attach",
+   "label": "Header Image"
+  },
+  {
+   "fieldname": "lessor_address_english",
+   "fieldtype": "Small Text",
+   "label": "Lessor address English"
+  },
+  {
+   "fieldname": "lessor_address_arabic",
+   "fieldtype": "Small Text",
+   "label": "Lessor address Arabic"
+  },
+  {
+   "fieldname": "footer_logo_image",
+   "fieldtype": "Attach",
+   "label": "Footer Logo Image"
+  }
+ ],
+ "modified": "2021-04-08 14:41:35.072358",
+ "modified_by": "Administrator",
+ "module": "Property Management",
+ "name": "Contract Configuration",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
