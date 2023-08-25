@@ -78,8 +78,15 @@ doc_events = {
 	"Payment Entry": {
 		"after_insert": "property_management.api.update_cheque_book",
 		"validate": "property_management.api.validate_cheque_no"
-		
-	}
+	},
+	"Sales Invoice": {
+		"on_submit":"property_management.api.create_jv"
+	},
+        "Journal Entry": {
+                "autoname":"property_management.api.jv_autoname",
+		"after_insert": "property_management.api.update_cheque_book",
+		"validate": "property_management.api.validate_cheque_no"
+        }
 }
 
 # Scheduled Tasks
@@ -118,3 +125,8 @@ scheduler_events = {
 # 	"frappe.desk.doctype.event.event.get_events": "property_management.event.get_events"
 # }
 
+jenv = {
+	"methods":[
+		"get_month:property_management.get_month_diff"
+	]
+}

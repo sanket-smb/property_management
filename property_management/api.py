@@ -3,43 +3,102 @@ import frappe, erpnext
 from frappe.utils import cint, cstr, flt, today,getdate
 from frappe import _
 from erpnext.accounts.utils import get_children
-
+from datetime import datetime, timedelta
+from collections import OrderedDict
 
 @frappe.whitelist()
 def update_cheque_book(doc,method):
-	allowed_cheque = frappe.db.get_value("Mode of Payment",doc.mode_of_payment,"allow_cheque")
-	if doc.payment_type == "Pay" and allowed_cheque == "Yes": 
-		if doc.reference_no == doc.cheque_no:
-			if doc.cheque_book:
-				cheque_doc = frappe.get_doc("Cheque Book",doc.cheque_book)
-				cheque_doc.last_used_cheque = doc.cheque_no
-				cheque_doc.next_cheque = cint(doc.cheque_no) + 1
-				cheque_doc.save(ignore_permissions = True)
+	if doc.doctype == "Payment Entry":
+		allowed_cheque = frappe.db.get_value("Mode of Payment",doc.mode_of_payment,"allow_cheque")
+		if doc.payment_type == "Pay" and allowed_cheque == "Yes":
+			if doc.reference_no == doc.cheque_no:
+				if doc.cheque_book:
+					cheque_doc = frappe.get_doc("Cheque Book",doc.cheque_book)
+					cheque_doc.last_used_cheque = doc.cheque_no
+					cheque_doc.next_cheque = cint(doc.cheque_no) + 1
+					cheque_log = frappe.new_doc("Cheque Log")
+					cheque_log.reference_doctype = "Payment Entry"
+					cheque_log.doc_name = doc.name
+					cheque_log.cheque_no = doc.cheque_no
+					cheque_doc.append("cheque_log_details", cheque_log)
+					cheque_doc.save(ignore_permissions = True)
+	elif doc.doctype == "Journal Entry":
+		if doc.cheque_book:
+			cheque_doc = frappe.get_doc("Cheque Book",doc.cheque_book)
+			cheque_doc.last_used_cheque = doc.cheque_number
+			cheque_doc.next_cheque = cint(doc.cheque_number) + 1
+			cheque_log = frappe.new_doc("Cheque Log")
+			cheque_log.reference_doctype = "Journal Entry"
+			cheque_log.doc_name = doc.name
+			cheque_log.cheque_no = doc.cheque_number
+			cheque_doc.append("cheque_log_details", cheque_log)
+			cheque_doc.save(ignore_permissions = True)
 
 @frappe.whitelist()
 def validate_cheque_no(doc,method):
-	allowed_cheque = frappe.db.get_value("Mode of Payment",doc.mode_of_payment,"allow_cheque")
-	# frappe.msgprint('out')
-	if doc.payment_type == "Pay" and allowed_cheque == "Yes":
-		# frappe.msgprint('if')
+	if doc.doctype == "Payment Entry":
+		allowed_cheque = frappe.db.get_value("Mode of Payment",doc.mode_of_payment,"allow_cheque")
+		# frappe.msgprint('out')
+		if doc.payment_type == "Pay" and allowed_cheque == "Yes":
+			# frappe.msgprint('if')
+			validate_duplicate_assignment(doc)
+			validate_cheque_no_exists(doc)
+	elif doc.doctype == "Journal Entry":
 		validate_duplicate_assignment(doc)
 		validate_cheque_no_exists(doc)
 
 def validate_duplicate_assignment(doc):
-	filters = [
-		["Payment Entry","docstatus","!=","2"],
-		["Payment Entry","name","!=",doc.name],
-		["Payment Entry","cheque_no","=",doc.cheque_no],
-		["Payment Entry","cheque_book","=",doc.cheque_book]
-	]
-	payment_entry = frappe.get_all("Payment Entry",filters=filters,fields=["name"])
-	if payment_entry:
-		frappe.throw(_("Cheque book {0}:Cheque No {1} Already Used In Payment Entry {2}").format(doc.cheque_book,doc.cheque_no,payment_entry[0].name))
+	if doc.doctype == "Payment Entry":
+		pfilters = [
+			["Payment Entry","docstatus","!=","2"],
+			["Payment Entry","name","!=",doc.name],
+			["Payment Entry","cheque_no","=",doc.cheque_no],
+			["Payment Entry","cheque_book","=",doc.cheque_book]
+		]
+		payment_entry = frappe.get_all("Payment Entry",filters=pfilters,fields=["name"])
+		if payment_entry:
+			frappe.throw(_("Cheque book {0}:Cheque No {1} Already Used In Payment Entry {2}").format(doc.cheque_book,doc.cheque_no,payment_entry[0].name))
+
+		jfilters = [
+			["Journal Entry","docstatus","!=","2"],
+			["Journal Entry","name","!=",doc.name],
+			["Journal Entry","cheque_number","=",doc.cheque_no],
+			["Journal Entry","cheque_book","=",doc.cheque_book]
+		]
+		journal_entry = frappe.get_all("Journal Entry",filters=jfilters,fields=["name"])
+		if journal_entry:
+			frappe.throw(_("Cheque book {0}:Cheque No {1} Already Used In Journal Entry {2}").format(doc.cheque_book,doc.cheque_no,journal_entry[0].name))	
+
+	elif doc.doctype == "Journal Entry":
+		pfilters = [
+			["Payment Entry","docstatus","!=","2"],
+			["Payment Entry","name","!=",doc.name],
+			["Payment Entry","cheque_no","=",doc.cheque_number],
+			["Payment Entry","cheque_book","=",doc.cheque_book]
+		]
+		payment_entry = frappe.get_all("Payment Entry",filters=pfilters,fields=["name"])
+		if payment_entry:
+			frappe.throw(_("Cheque book {0}:Cheque No {1} Already Used In Payment Entry {2}").format(doc.cheque_book,doc.cheque_number,payment_entry[0].name))
+
+		jfilters = [
+			["Journal Entry","docstatus","!=","2"],
+			["Journal Entry","name","!=",doc.name],
+			["Journal Entry","cheque_number","=",doc.cheque_number],
+			["Journal Entry","cheque_book","=",doc.cheque_book]
+		]
+		journal_entry = frappe.get_all("Journal Entry",filters=jfilters,fields=["name"])
+		if journal_entry:
+			frappe.throw(_("Cheque book {0}:Cheque No {1} Already Used In Journal Entry {2}").format(doc.cheque_book,doc.cheque_number,journal_entry[0].name))
 
 def validate_cheque_no_exists(doc):
-	cheque_book_doc = frappe.get_doc("Cheque Book",doc.cheque_book)
-	if int(doc.cheque_no) < int(cheque_book_doc.start_number) or int(doc.cheque_no) > int(cheque_book_doc.end_number):
-		frappe.throw(_("Cheque book {0}:Cheque No Must Be Between {1} and {2}").format(doc.cheque_book,cheque_book_doc.start_number,cheque_book_doc.end_number))
+	if doc.doctype == "Payment Entry":
+		cheque_book_doc = frappe.get_doc("Cheque Book",doc.cheque_book)
+		if int(doc.cheque_no) < int(cheque_book_doc.start_number) or int(doc.cheque_no) > int(cheque_book_doc.end_number):
+			frappe.throw(_("Cheque book {0}:Cheque No Must Be Between {1} and {2}").format(doc.cheque_book,cheque_book_doc.start_number,cheque_book_doc.end_number))
+	elif doc.doctype == "Journal Entry":
+		cheque_book_doc = frappe.get_doc("Cheque Book",doc.cheque_book)
+		if int(doc.cheque_number) < int(cheque_book_doc.start_number) or int(doc.cheque_number) > int(cheque_book_doc.end_number):
+			frappe.throw(_("Cheque book {0}:Cheque No Must Be Between {1} and {2}").format(doc.cheque_book,cheque_book_doc.start_number,cheque_book_doc.end_number))
 
 @frappe.whitelist()
 def account_list():
@@ -118,8 +177,9 @@ def create_invoice(contract,date,start_date,end_date):
 		property = contract_data.property,
 		building = contract_data.building,
 		contract_no = contract_data.name,
+		invoice_type_format = contract_data.invoice_type_format,
 		items = items
-	)).insert(ignore_permissions = True)
+	)).save(ignore_permissions = True)
 
 def get_items_from_contract(contract_data):
 	income_account = frappe.db.get_value("Property",contract_data.property,"revenue_account")
@@ -154,15 +214,99 @@ def create_owner_invoice(customer,date,from_date,to_date,contract_no,property_id
     doc = frappe.get_doc(dict(
 		doctype = "Sales Invoice",
 		customer = customer,
+		naming_series = 'SD-',
 		posting_date = getdate(from_date),
 		period_start_date = getdate(from_date),
 		period_end_date = getdate(to_date),
 		property = property_id,
 		building = building,
 		contract_no = contract_no,
+		invoice_type_format = frappe.db.get_value('Rent Contract', contract_no, 'invoice_type_format'),
 		set_posting_time = 1,
 		items = items,
 		is_property_invoice = 1,
-        is_deposite_invoice = 1,
-        is_multi_contract_invoice = 0
-    )).insert(ignore_permissions = True)
+		is_deposite_invoice = 1,
+		is_multi_contract_invoice = 0
+    )).save(ignore_permissions = True)
+
+@frappe.whitelist()
+def create_jv(doc, action):
+	contract = doc.contract_no
+	psd = doc.period_start_date
+	ped = doc.period_end_date
+	item = doc.items[0].item_code
+	if item != frappe.db.get_single_value("Property Setting","accrued_rent_item") or frappe.db.get_value("Rent Contract",contract,"payment_period") == 1:
+		return
+	if isinstance(psd,str):
+		psd = datetime.strptime(psd, "%Y-%m-%d")
+	if isinstance(ped,str):
+		ped = datetime.strptime(ped, "%Y-%m-%d")
+	months = OrderedDict(((psd + timedelta(_)).strftime(r"%m-%Y"), None) for _ in range((ped - psd).days)).keys()
+	months = list(months)
+	for i in range(len(months)):
+		months[i] = '01-'+ months[i]
+		months[i] = datetime.strptime(months[i], "%d-%m-%Y")
+	property = frappe.db.get_value("Rent Contract",contract,"property")
+	revenue_acc,cost_center = frappe.db.get_value("Property",property,("revenue_account","cost_center"))
+	accrued_account = frappe.db.sql(""" select income_account from `tabItem Default` where parent = %s """,item)[0][0]
+	
+	new_doc = frappe.new_doc("Journal Entry")
+	new_doc.voucher_type ="Advance Revenue"
+	new_doc.posting_date = psd
+	new_doc.company = "AAA HOUSING"
+	new_doc.invoice_no = doc.name
+	new_doc.contract_no = doc.contract_no
+	new_doc.property = doc.property
+	new_doc.building = doc.building
+	new_doc.user_remark ="Sales Invoice:"+new_doc.invoice_no+"\nContract No:"+new_doc.contract_no+"\nProperty:"+new_doc.property+"\nBuilding:"+new_doc.building
+	child_row = new_doc.append("accounts",{})
+	child_row.account = accrued_account
+	child_row.cost_center = "Main - AAA"
+	child_row.debit_in_account_currency = doc.grand_total/len(months)
+	child_row.credit_in_account_currency = "0"
+	child_row.parenttype = "Journal Entry"
+	
+	child_row = new_doc.append("accounts",{})
+	child_row.account =  revenue_acc
+	child_row.cost_center = cost_center
+	child_row.credit_in_account_currency = doc.grand_total/len(months)
+	child_row.debit_in_account_currency = "0"
+	child_row.parent_type = "Journal Entry"
+	new_doc.total_debit =doc.grand_total/len(months)
+	new_doc.total_credit = doc.grand_total/len(months)
+	new_doc.save()
+
+	for i in range(1,len(months)):
+		
+		new_doc = frappe.new_doc("Journal Entry")
+		new_doc.voucher_type = "Advance Revenue"
+		new_doc.posting_date = months[i]
+		new_doc.company = "AAA HOUSING"
+		new_doc.invoice_no = doc.name
+		new_doc.contract_no = doc.contract_no
+		new_doc.property = doc.property
+		new_doc.building = doc.building
+		new_doc.user_remark ="Sales Invoice:"+new_doc.invoice_no+"\nContract No:"+new_doc.contract_no+"\nProperty:"+new_doc.property+"\nBuilding:"+new_doc.building
+		child_row = new_doc.append("accounts",{})
+		child_row.account = accrued_account
+		child_row.cost_center = "Main - AAA"
+		child_row.debit_in_account_currency = doc.grand_total/len(months)
+		child_row.credit_in_account_currency = "0"
+		child_row.parenttype = "Journal Entry"
+
+		child_row = new_doc.append("accounts",{})
+		child_row.account =  revenue_acc
+		child_row.cost_center = cost_center
+		child_row.credit_in_account_currency = doc.grand_total/len(months)
+		child_row.debit_in_account_currency = "0"
+		child_row.parent_type = "Journal Entry"
+		new_doc.total_debit =doc.grand_total/len(months)
+		new_doc.total_credit = doc.grand_total/len(months)
+		new_doc.save()
+
+@frappe.whitelist()
+def jv_autoname(doc, action):
+		if doc.voucher_type == "Advance Revenue":
+			num = frappe.db.sql("select max(jv_no) from `tabJournal Entry`")[0][0]+1
+			doc.name = "AAA-Advance-Revenue-"+str(num)
+			doc.jv_no = num

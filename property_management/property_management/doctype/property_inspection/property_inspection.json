@@ -18,6 +18,8 @@
   "section_break_10",
   "quality_inspection_template",
   "readings",
+  "damages",
+  "total_damages_charges",
   "inspected_by",
   "verified_by",
   "remarks"
@@ -67,6 +69,7 @@
    "fetch_from": "contract.contract_end_date",
    "fieldname": "check_out_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Check Out Date",
    "read_only": 1
   },
@@ -117,6 +120,7 @@
   {
    "fieldname": "vacating_notice_form",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Vacating Notice Form",
    "options": "Vacating Notice Form",
    "read_only": 1
@@ -126,11 +130,22 @@
    "fieldtype": "Select",
    "label": "Letterhead",
    "options": "AAA\nBelad"
+  },
+  {
+   "fieldname": "damages",
+   "fieldtype": "Table",
+   "label": "Damages",
+   "options": "Demages Details"
+  },
+  {
+   "fieldname": "total_damages_charges",
+   "fieldtype": "Currency",
+   "label": "Total Damages Charges"
   }
  ],
  "is_submittable": 1,
- "modified": "2021-04-27 15:02:53.586038",
- "modified_by": "Administrator",
+ "modified": "2023-06-06 14:27:16.604432",
+ "modified_by": "info@aaahousing.com",
  "module": "Property Management",
  "name": "Property Inspection",
  "owner": "Administrator",
@@ -145,6 +160,20 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],

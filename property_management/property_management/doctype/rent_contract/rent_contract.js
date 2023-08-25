@@ -46,7 +46,51 @@ frappe.ui.form.on('Rent Contract', {
 				}
 			})
 		})
+		frm.add_custom_button(__('Extend'),function (){ 
 
+			frm.trigger("extend")
+		 })
+
+	},
+	extend:function(frm){
+		var months;
+		if(frm.doc.docstatus == 1){
+                        var d = new frappe.ui.Dialog({
+                                fields: [
+                                        {
+                                                label: 'Number of Months',
+                                                fieldname: 'months',
+                                                fieldtype: 'Int',
+                                        },
+                                ],
+                                primary_action: function() {
+                                        var data = d.get_values();
+                                        months = data.months
+					if(months){
+        			                console.log(months)
+	                        	frappe.call({
+                        			method: "property_management.property_management.doctype.rent_contract.rent_contract.extend",
+                       				 args: {
+                                			doc_name: frm.doc.name,
+                                			no_of_months : months
+                				},
+                        			freeze:true,
+                        			freeze_message: "Extending. Please Wait",
+                        			callback: function(r) {
+                                			if(r.message) {
+                                        			console.log("Success")
+                                        			window.location.replace("https://pms.aaahousing.com/desk#Form/Rent%20Contract/"+r.message)
+                        			}
+                       				 }
+                			});
+					}
+                                        d.hide();
+                                },
+                                primary_action_label: __('Submit')
+                        });
+                        d.show();
+
+                }
 	},
 	property: function(frm) {
 		frm.set_value("final_rent_amount", parseFloat(frm.doc.rent)-parseFloat(frm.doc.discount));

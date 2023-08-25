@@ -1,6 +1,7 @@
 {
  "allow_import": 1,
- "autoname": "format:AAA{YY}-{####}",
+ "allow_rename": 1,
+ "autoname": "naming_series:",
  "creation": "2017-02-01 00:59:03.929514",
  "doctype": "DocType",
  "document_type": "Document",
@@ -39,6 +40,7 @@
   "company_tenant_name_arabic",
   "date",
   "contract_start_date",
+  "contract_end_date2",
   "contract_end_date",
   "payment_date_calculation",
   "inspection_date",
@@ -62,7 +64,9 @@
   "diplomatic_clause_en",
   "diplomatic_clause_ar",
   "additional_clause_en",
-  "additional_clause_ar"
+  "additional_clause_ar",
+  "extended_from",
+  "extension_count"
  ],
  "fields": [
   {
@@ -185,10 +189,11 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "contract_end_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "Contract End Date",
+   "label": "Actual End Date",
    "reqd": 1
   },
   {
@@ -212,8 +217,7 @@
   {
    "fieldname": "rent",
    "fieldtype": "Currency",
-   "label": "Actual Rent Amount",
-   "reqd": 1
+   "label": "Actual Rent Amount"
   },
   {
    "fieldname": "rent_amount_in_words",
@@ -332,7 +336,7 @@
    "fieldtype": "Select",
    "hidden": 1,
    "label": "ID",
-   "options": "AAA-.YYYY.-####"
+   "options": "AAA.YYYY.-###"
   },
   {
    "allow_on_submit": 1,
@@ -405,11 +409,31 @@
    "fieldtype": "Select",
    "label": "Invoice Type format",
    "options": "Physical\nCompany\nEmail\nNot Required"
+  },
+  {
+   "fieldname": "extended_from",
+   "fieldtype": "Link",
+   "label": "Extended From",
+   "options": "Rent Contract",
+   "read_only": 1
+  },
+  {
+   "fieldname": "extension_count",
+   "fieldtype": "Data",
+   "label": "Extension Count",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "contract_end_date2",
+   "fieldtype": "Date",
+   "label": "Contract End Date",
+   "reqd": 1
   }
  ],
  "is_submittable": 1,
- "modified": "2021-05-01 16:18:22.534428",
- "modified_by": "Administrator",
+ "modified": "2023-06-10 11:31:56.294846",
+ "modified_by": "info@aaahousing.com",
  "module": "Property Management",
  "name": "Rent Contract",
  "name_case": "Title Case",

@@ -5,11 +5,12 @@
  "engine": "InnoDB",
  "field_order": [
   "invoice_item",
+  "accrued_rent_item",
   "insurance_item"
  ],
  "fields": [
   {
-   "description": "Item will use for creating an invoice for the contract period",
+   "description": "Item will use for creating an invoice on monthly basis for the contract period",
    "fieldname": "invoice_item",
    "fieldtype": "Link",
    "label": "Invoice Item",
@@ -20,10 +21,17 @@
    "fieldtype": "Link",
    "label": "Insurance Item",
    "options": "Item"
+  },
+  {
+   "description": "Item will use for creating an invoice other than monthly basis for the contract period",
+   "fieldname": "accrued_rent_item",
+   "fieldtype": "Link",
+   "label": "Accrued Rent Item ",
+   "options": "Item"
   }
  ],
  "issingle": 1,
- "modified": "2021-03-20 20:58:01.574095",
+ "modified": "2021-07-16 12:34:20.794340",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Property Setting",

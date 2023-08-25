@@ -16,7 +16,9 @@
   "last_used_cheque",
   "column_break_11",
   "next_cheque",
-  "cheque_finished"
+  "cheque_finished",
+  "section_break_13",
+  "cheque_log_details"
  ],
  "fields": [
   {
@@ -84,10 +86,20 @@
    "fieldtype": "Check",
    "label": "Cheque Finished",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "cheque_log_details",
+   "fieldtype": "Table",
+   "label": "Cheque Log Details",
+   "options": "Cheque Log"
   }
  ],
- "modified": "2021-02-17 17:18:09.352587",
- "modified_by": "Administrator",
+ "modified": "2023-07-06 10:13:07.760315",
+ "modified_by": "info@aaahousing.com",
  "module": "Property Management",
  "name": "Cheque Book",
  "owner": "Administrator",

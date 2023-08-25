@@ -9,12 +9,15 @@
  "field_order": [
   "building_id",
   "building_name",
+  "building_name_ar",
   "property_ownership",
   "block_number",
   "street_name_number",
   "street_name_number_arabic",
   "area",
   "area_arabic",
+  "cost_center",
+  "revenue_account",
   "column_break_3",
   "image",
   "property_management_amenities",
@@ -116,10 +119,28 @@
    "fieldtype": "Link",
    "label": "Property Ownership",
    "options": "Property Ownership"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "building_name_ar",
+   "fieldtype": "Data",
+   "label": "Building Name Ar"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "revenue_account",
+   "fieldtype": "Link",
+   "label": "Revenue Account",
+   "options": "Account"
   }
  ],
  "is_submittable": 1,
- "modified": "2021-04-10 06:57:22.935083",
+ "modified": "2021-08-06 11:49:41.996890",
  "modified_by": "Administrator",
  "module": "Property Management",
  "name": "Building",
